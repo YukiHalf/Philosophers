@@ -6,7 +6,7 @@
 /*   By: sdarius- <sdarius-@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/24 15:10:01 by sdarius-          #+#    #+#             */
-/*   Updated: 2025/10/05 19:25:09 by sdarius-         ###   ########.fr       */
+/*   Updated: 2025/10/05 19:58:02 by sdarius-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,8 +102,9 @@ int	valid_args(int argc, char **argv)
 
 int	main(int argc, char **argv)
 {
-	data_t	data;
-	pthread_t monitor_thread;
+	data_t		data;
+	pthread_t	monitor_thread;
+	int			i;
 
 	if (argc != 5 && argc != 6)
 		return (1);
@@ -116,9 +117,15 @@ int	main(int argc, char **argv)
 		cleanup_data(&data);
 		return (1);
 	}
-	pthread_create(&monitor_thread,NULL,monitor,&data);
-	pthread_join(monitor_thread,NULL);
+	pthread_create(&monitor_thread, NULL, monitor, &data);
+	pthread_join(monitor_thread, NULL);
+	data.stop_simulation = 1;
+	i = 0;
+	while (i < data.number_of_philo)
+	{
+		pthread_join(data.threads[i], NULL);
+		i++;
+	}
 	cleanup_data(&data);
-	printf("Simulation Ended");
 	return (0);
 }

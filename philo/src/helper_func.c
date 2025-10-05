@@ -6,7 +6,7 @@
 /*   By: sdarius- <sdarius-@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/02 16:26:32 by sdarius-          #+#    #+#             */
-/*   Updated: 2025/10/05 19:01:57 by sdarius-         ###   ########.fr       */
+/*   Updated: 2025/10/05 22:39:36 by sdarius-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,12 +37,7 @@ void	cleanup_data(data_t *data)
 		free(data->forks);
 	}
 	if (data->threads)
-	{
-		i = -1;
-		while (++i < data->number_of_philo)
-			pthread_join(data->threads[i], NULL);
 		free(data->threads);
-	}
 	if (data->philo)
 		free(data->philo);
 	pthread_mutex_destroy(&data->print_mutex);
@@ -52,6 +47,23 @@ void	cleanup_data(data_t *data)
 void	print_action(philo_t *philo, char *action)
 {
 	pthread_mutex_lock(&philo->data->print_mutex);
-	printf("%ld %d %s\n", get_time() - philo->data->start_time, philo->id, action);
+	if (!philo->data->stop_simulation)
+		printf("%ld %d %s\n", get_time() - philo->data->start_time, philo->id,
+			action);
 	pthread_mutex_unlock(&philo->data->print_mutex);
+}
+
+void	ft_usleep(long microseconds, data_t *data)
+{
+	long	start_time;
+	long	current_time;
+
+	start_time = get_time() * 1000; 
+	while (!data->stop_simulation)
+	{
+		current_time = get_time() * 1000;
+		if (current_time - start_time >= microseconds)
+			break ;
+		usleep(500);
+	}
 }
