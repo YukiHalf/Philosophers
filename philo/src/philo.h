@@ -6,7 +6,7 @@
 /*   By: sdarius- <sdarius-@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/24 15:10:21 by sdarius-          #+#    #+#             */
-/*   Updated: 2025/10/05 22:39:23 by sdarius-         ###   ########.fr       */
+/*   Updated: 2025/10/08 18:01:21 by sdarius-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,9 @@
 # include <sys/time.h>
 # include <unistd.h>
 
-typedef struct philo_s	philo_t;
+typedef struct s_philo	t_philo;
 
-typedef struct data_s
+typedef struct s_data
 {
 	int					number_of_philo;
 	long				time_to_die;
@@ -33,28 +33,32 @@ typedef struct data_s
 	pthread_mutex_t		print_mutex;
 	pthread_mutex_t		death_mutex;
 	pthread_mutex_t		*forks;
-	philo_t				*philo;
+	t_philo				*philo;
 	pthread_t			*threads;
-}						data_t;
+}						t_data;
 
-typedef struct philo_s
+typedef struct s_philo
 {
 	int					id;
 	int					meals_eaten;
 	long				last_meal_time;
 	pthread_mutex_t		*left_fork;
 	pthread_mutex_t		*right_fork;
-	data_t				*data;
-}						philo_t;
+	t_data				*data;
+}						t_philo;
 
 // Routine & functions related
 void					*routine(void *arg);
 void					*monitor(void *arg);
 
+void					think(t_philo *philo);
+
 // Helper functions
 long					get_time(void);
 int						is_num(char c);
-void					cleanup_data(data_t *data);
-void					print_action(philo_t *philo, char *action);
-void					ft_usleep(long microseconds, data_t *data);
+void					cleanup_data(t_data *data);
+void					print_action(t_philo *philo, char *action);
+void					ft_usleep(long microseconds, t_data *data);
+void					one_philo(t_data *data);
+void					offset_philos(t_philo *philo);
 #endif

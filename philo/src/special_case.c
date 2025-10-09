@@ -1,0 +1,44 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   special_case.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: sdarius- <sdarius-@student.42heilbronn.    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/10/05 22:44:59 by sdarius-          #+#    #+#             */
+/*   Updated: 2025/10/08 18:01:07 by sdarius-         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "philo.h"
+
+void	one_philo(t_data *data)
+{
+	print_action(data->philo, "has taken a fork");
+	ft_usleep(data->time_to_die * 1000, data);
+}
+
+void	offset_philos(t_philo *philo)
+{
+	if (philo->data->number_of_philo % 2 == 1)
+	{
+		usleep((philo->id - 1) * 20);
+	}
+	else
+	{
+		if (philo->id % 2 == 0)
+			usleep(70);
+	}
+}
+
+void 	think(t_philo *philo)
+{
+
+	if(philo->last_meal_time - philo->data->time_to_eat <= philo->data->time_to_die / 2)
+	{
+		print_action(philo,"is thinking");
+		usleep(philo->data->time_to_eat * 1000);
+	}
+	else
+		print_action(philo,"is thinking");
+}

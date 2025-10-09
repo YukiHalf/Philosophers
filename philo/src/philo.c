@@ -6,13 +6,13 @@
 /*   By: sdarius- <sdarius-@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/24 15:10:01 by sdarius-          #+#    #+#             */
-/*   Updated: 2025/10/05 19:58:02 by sdarius-         ###   ########.fr       */
+/*   Updated: 2025/10/05 22:52:50 by sdarius-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-void	init_data(int argc, char **argv, data_t *data)
+void	init_data(int argc, char **argv, t_data *data)
 {
 	data->start_time = get_time();
 	data->number_of_philo = atoi(argv[1]);
@@ -31,9 +31,9 @@ void	init_data(int argc, char **argv, data_t *data)
 	data->threads = NULL;
 }
 
-int	allocate_res(data_t *data)
+int	allocate_res(t_data *data)
 {
-	data->philo = malloc(sizeof(philo_t) * data->number_of_philo);
+	data->philo = malloc(sizeof(t_philo) * data->number_of_philo);
 	data->threads = malloc(sizeof(pthread_t) * data->number_of_philo);
 	data->forks = malloc(sizeof(pthread_mutex_t) * data->number_of_philo);
 	if (!data->philo || !data->threads || !data->forks)
@@ -49,7 +49,7 @@ int	allocate_res(data_t *data)
 	return (1);
 }
 
-int	init_philo(data_t *data)
+int	init_philo(t_data *data)
 {
 	int	i;
 
@@ -102,7 +102,7 @@ int	valid_args(int argc, char **argv)
 
 int	main(int argc, char **argv)
 {
-	data_t		data;
+	t_data		data;
 	pthread_t	monitor_thread;
 	int			i;
 
@@ -112,11 +112,7 @@ int	main(int argc, char **argv)
 		return (1);
 	init_data(argc, argv, &data);
 	if (!init_philo(&data))
-	{
-		printf("Error: Failed to initialize Philosophers\n");
-		cleanup_data(&data);
-		return (1);
-	}
+		return (cleanup_data(&data), 1);
 	pthread_create(&monitor_thread, NULL, monitor, &data);
 	pthread_join(monitor_thread, NULL);
 	data.stop_simulation = 1;

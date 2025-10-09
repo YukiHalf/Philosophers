@@ -6,7 +6,7 @@
 /*   By: sdarius- <sdarius-@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/02 16:26:32 by sdarius-          #+#    #+#             */
-/*   Updated: 2025/10/05 22:39:36 by sdarius-         ###   ########.fr       */
+/*   Updated: 2025/10/05 22:51:18 by sdarius-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int	is_num(char c)
 	return ((c >= '0' && c <= '9'));
 }
 
-void	cleanup_data(data_t *data)
+void	cleanup_data(t_data *data)
 {
 	int	i;
 
@@ -44,7 +44,7 @@ void	cleanup_data(data_t *data)
 	pthread_mutex_destroy(&data->death_mutex);
 }
 
-void	print_action(philo_t *philo, char *action)
+void	print_action(t_philo *philo, char *action)
 {
 	pthread_mutex_lock(&philo->data->print_mutex);
 	if (!philo->data->stop_simulation)
@@ -53,12 +53,12 @@ void	print_action(philo_t *philo, char *action)
 	pthread_mutex_unlock(&philo->data->print_mutex);
 }
 
-void	ft_usleep(long microseconds, data_t *data)
+void	ft_usleep(long microseconds, t_data *data)
 {
 	long	start_time;
 	long	current_time;
 
-	start_time = get_time() * 1000; 
+	start_time = get_time() * 1000;
 	while (!data->stop_simulation)
 	{
 		current_time = get_time() * 1000;

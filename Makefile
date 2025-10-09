@@ -4,7 +4,8 @@ SRC_DIR := philo/src
 SRC := 	helper_func.c \
         monitor.c \
         routine.c \
-        philo.c
+        philo.c \
+		special_case.c
 
 SRCS := $(addprefix $(SRC_DIR)/, $(SRC))
 OBJ_DIR := obj
