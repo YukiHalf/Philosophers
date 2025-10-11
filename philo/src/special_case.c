@@ -6,7 +6,7 @@
 /*   By: sdarius- <sdarius-@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/05 22:44:59 by sdarius-          #+#    #+#             */
-/*   Updated: 2025/10/11 15:49:02 by sdarius-         ###   ########.fr       */
+/*   Updated: 2025/10/11 16:35:29 by sdarius-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,6 @@ void	think(t_philo *philo)
 			- philo->data->time_to_eat <= philo->data->time_to_die / 2)
 		&& philo->data->number_of_philo % 2 == 1)
 	{
-		printf("time %ld\n", get_time() - philo->last_meal_time);
 		print_action(philo, "is thinking");
 		usleep(philo->data->time_to_eat / 2 * 1000);
 	}

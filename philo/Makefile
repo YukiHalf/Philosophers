@@ -1,6 +1,6 @@
-NAME := philosopher
+NAME := philo
 
-SRC_DIR := philo/src
+SRC_DIR := src
 SRC := 	helper_func.c \
         monitor.c \
         routine.c \
