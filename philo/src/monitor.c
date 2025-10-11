@@ -6,7 +6,7 @@
 /*   By: sdarius- <sdarius-@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/30 15:34:36 by sdarius-          #+#    #+#             */
-/*   Updated: 2025/10/09 20:21:00 by sdarius-         ###   ########.fr       */
+/*   Updated: 2025/10/11 16:40:58 by sdarius-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	check_rounds(t_data *data, int finished_count)
 
 int	check_died(t_data *data, int i, long time_since_meal)
 {
-	if (time_since_meal > data->time_to_die + 10)
+	if (time_since_meal > data->time_to_die)
 	{
 		print_action(&data->philo[i], "died");
 		data->stop_simulation = 1;
