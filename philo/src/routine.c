@@ -6,7 +6,7 @@
 /*   By: sdarius- <sdarius-@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/30 16:11:19 by sdarius-          #+#    #+#             */
-/*   Updated: 2025/10/08 17:46:30 by sdarius-         ###   ########.fr       */
+/*   Updated: 2025/10/11 15:49:19 by sdarius-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,11 +69,6 @@ void	*routine(void *arg)
 		put_down_forks(philo);
 		sleep_philo(philo);
 		think(philo);
-		//if (data->number_of_rounds != -1
-		//	&& philo->meals_eaten >= data->number_of_rounds)
-		//{
-		//	break ;
-		//}
 	}
 	return (NULL);
 }
