@@ -6,7 +6,7 @@
 /*   By: sdarius- <sdarius-@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/30 15:34:36 by sdarius-          #+#    #+#             */
-/*   Updated: 2025/10/11 16:40:58 by sdarius-         ###   ########.fr       */
+/*   Updated: 2025/10/26 16:42:46 by sdarius-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,12 @@
 
 void	check_rounds(t_data *data, int finished_count)
 {
+	pthread_mutex_lock(&data->death_mutex);
 	if (data->number_of_rounds != -1 && finished_count >= data->number_of_philo)
 	{
 		data->stop_simulation = 1;
 	}
+	pthread_mutex_unlock(&data->death_mutex);
 }
 
 int	check_died(t_data *data, int i, long time_since_meal)
@@ -54,7 +56,7 @@ void	*monitor(void *arg)
 	int		finished_count;
 
 	data = (t_data *)arg;
-	while (!data->stop_simulation)
+	while (!check_simultation(data))
 	{
 		finished_count = 0;
 		i = -1;

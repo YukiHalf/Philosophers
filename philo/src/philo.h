@@ -6,7 +6,7 @@
 /*   By: sdarius- <sdarius-@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/24 15:10:21 by sdarius-          #+#    #+#             */
-/*   Updated: 2025/10/11 15:49:06 by sdarius-         ###   ########.fr       */
+/*   Updated: 2025/10/26 16:42:42 by sdarius-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,4 +61,7 @@ void					print_action(t_philo *philo, char *action);
 void					ft_usleep(long microseconds, t_data *data);
 void					one_philo(t_data *data);
 void					offset_philos(t_philo *philo);
+long					ft_atol(char *str);
+void					message_error(void);
+int						check_simultation(t_data *data);
 #endif

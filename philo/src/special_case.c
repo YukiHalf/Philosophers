@@ -6,7 +6,7 @@
 /*   By: sdarius- <sdarius-@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/05 22:44:59 by sdarius-          #+#    #+#             */
-/*   Updated: 2025/10/11 16:35:29 by sdarius-         ###   ########.fr       */
+/*   Updated: 2025/10/26 16:42:12 by sdarius-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,13 +33,37 @@ void	offset_philos(t_philo *philo)
 
 void	think(t_philo *philo)
 {
-	if ((get_time() - philo->last_meal_time
-			- philo->data->time_to_eat <= philo->data->time_to_die / 2)
+	if ((get_time() - philo->last_meal_time <= philo->data->time_to_die / 2)
 		&& philo->data->number_of_philo % 2 == 1)
 	{
-		print_action(philo, "is thinking");
 		usleep(philo->data->time_to_eat / 2 * 1000);
 	}
 	else
+	{
 		print_action(philo, "is thinking");
+	}
+}
+
+long	ft_atol(char *str)
+{
+	int		i;
+	long	nbr;
+
+	nbr = 0;
+	i = 0;
+	while ((str[i] >= 9 && str[i] <= 13) || str[i] == 32)
+		i++;
+	while (str[i] == '+')
+		i++;
+	while (str[i])
+	{
+		nbr = nbr * 10 + (str[i] - '0');
+		i++;
+	}
+	return (nbr);
+}
+
+void	message_error(void)
+{
+	printf("The args you provided don't fit the standart\n");
 }

@@ -6,7 +6,7 @@
 /*   By: sdarius- <sdarius-@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/30 16:11:19 by sdarius-          #+#    #+#             */
-/*   Updated: 2025/10/11 15:49:19 by sdarius-         ###   ########.fr       */
+/*   Updated: 2025/10/26 16:42:36 by sdarius-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ void	*routine(void *arg)
 	if (data->number_of_philo == 1)
 		return (one_philo(data), NULL);
 	offset_philos(philo);
-	while (!data->stop_simulation)
+	while (!check_simultation(data))
 	{
 		take_forks(philo);
 		eat(philo);

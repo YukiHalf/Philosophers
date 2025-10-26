@@ -6,7 +6,7 @@
 /*   By: sdarius- <sdarius-@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/02 16:26:32 by sdarius-          #+#    #+#             */
-/*   Updated: 2025/10/05 22:51:18 by sdarius-         ###   ########.fr       */
+/*   Updated: 2025/10/26 16:42:51 by sdarius-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ void	ft_usleep(long microseconds, t_data *data)
 	long	current_time;
 
 	start_time = get_time() * 1000;
-	while (!data->stop_simulation)
+	while (!check_simultation(data))
 	{
 		current_time = get_time() * 1000;
 		if (current_time - start_time >= microseconds)

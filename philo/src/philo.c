@@ -6,7 +6,7 @@
 /*   By: sdarius- <sdarius-@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/24 15:10:01 by sdarius-          #+#    #+#             */
-/*   Updated: 2025/10/05 22:52:50 by sdarius-         ###   ########.fr       */
+/*   Updated: 2025/10/26 16:41:06 by sdarius-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,12 @@
 void	init_data(int argc, char **argv, t_data *data)
 {
 	data->start_time = get_time();
-	data->number_of_philo = atoi(argv[1]);
-	data->time_to_die = atoi(argv[2]);
-	data->time_to_eat = atoi(argv[3]);
-	data->time_to_sleep = atoi(argv[4]);
+	data->number_of_philo = ft_atol(argv[1]);
+	data->time_to_die = ft_atol(argv[2]);
+	data->time_to_eat = ft_atol(argv[3]);
+	data->time_to_sleep = ft_atol(argv[4]);
 	if (argc == 6)
-		data->number_of_rounds = atoi(argv[5]);
+		data->number_of_rounds = ft_atol(argv[5]);
 	else
 		data->number_of_rounds = -1;
 	data->stop_simulation = 0;
@@ -90,7 +90,7 @@ int	valid_args(int argc, char **argv)
 				return (0);
 			j++;
 		}
-		val = atoi(argv[i]);
+		val = ft_atol(argv[i]);
 		if (i == 1 && (val <= 0 || val > 200))
 			return (0);
 		if (i >= 2 && val <= 0)
@@ -109,7 +109,7 @@ int	main(int argc, char **argv)
 	if (argc != 5 && argc != 6)
 		return (1);
 	if (!valid_args(argc, argv))
-		return (1);
+		return (message_error(), 1);
 	init_data(argc, argv, &data);
 	if (!init_philo(&data))
 		return (cleanup_data(&data), 1);
