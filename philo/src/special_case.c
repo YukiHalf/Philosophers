@@ -6,7 +6,7 @@
 /*   By: sdarius- <sdarius-@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/05 22:44:59 by sdarius-          #+#    #+#             */
-/*   Updated: 2025/11/11 15:29:20 by sdarius-         ###   ########.fr       */
+/*   Updated: 2025/11/07 17:29:32 by sdarius-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	offset_philos(t_philo *philo)
 void	think(t_philo *philo)
 {
 	print_action(philo, "is thinking");
-	if (philo->data->number_of_philo % 2 == 1)
+	if (philo->data->number_of_philo % 2 == 0)
 	{
 		ft_usleep(philo->data->time_to_eat / 10, philo->data);
 	}

@@ -6,7 +6,7 @@
 /*   By: sdarius- <sdarius-@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/24 15:10:01 by sdarius-          #+#    #+#             */
-/*   Updated: 2025/11/11 16:46:11 by sdarius-         ###   ########.fr       */
+/*   Updated: 2025/10/26 16:41:06 by sdarius-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,7 @@ int	valid_args(int argc, char **argv)
 		j = 0;
 		while (argv[i][j])
 		{
-			if (!(is_num(argv[i][j])))
+			if (!(is_num(argv[i][j])) || argv[i][j] == '-')
 				return (0);
 			j++;
 		}

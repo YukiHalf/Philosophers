@@ -6,7 +6,7 @@
 /*   By: sdarius- <sdarius-@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/26 16:05:25 by sdarius-          #+#    #+#             */
-/*   Updated: 2025/11/11 16:47:46 by sdarius-         ###   ########.fr       */
+/*   Updated: 2025/10/26 16:42:30 by sdarius-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,14 @@
 
 int	check_simultation(t_data *data)
 {
-	int result;
+	int	ok;
 
+	ok = 0;
 	pthread_mutex_lock(&data->death_mutex);
-	result = data->stop_simulation;
+	if (data->stop_simulation == 1)
+		ok = 1;
 	pthread_mutex_unlock(&data->death_mutex);
-	return(result);
+	if (ok == 1)
+		return (1);
+	return (0);
 }
