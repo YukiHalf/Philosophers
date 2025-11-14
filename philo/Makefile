@@ -12,8 +12,8 @@ SRCS := $(addprefix $(SRC_DIR)/, $(SRC))
 OBJ_DIR := obj
 OBJ := $(patsubst $(SRC_DIR)/%.c,$(OBJ_DIR)/%.o, $(SRCS))
 
-CC := clang
-CFLAGS := -Wall -Wextra -Werror -fsanitize=thread -g
+CC := cc
+CFLAGS := -Wall -Wextra -Werror 
 
 all: $(NAME)
 
