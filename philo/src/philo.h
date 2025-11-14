@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sdarius- <sdarius-@student.42heilbronn.    +#+  +:+       +#+        */
+/*   By: sdarius- <sdarius-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/24 15:10:21 by sdarius-          #+#    #+#             */
-/*   Updated: 2025/10/26 16:42:42 by sdarius-         ###   ########.fr       */
+/*   Updated: 2025/11/14 17:13:20 by sdarius-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ typedef struct s_data
 	int					stop_simulation;
 	pthread_mutex_t		print_mutex;
 	pthread_mutex_t		death_mutex;
+	pthread_mutex_t		stop_mutex;
 	pthread_mutex_t		*forks;
 	t_philo				*philo;
 	pthread_t			*threads;
@@ -64,4 +65,5 @@ void					offset_philos(t_philo *philo);
 long					ft_atol(char *str);
 void					message_error(void);
 int						check_simultation(t_data *data);
+void					set_stop(t_data *data);
 #endif

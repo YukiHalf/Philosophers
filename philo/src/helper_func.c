@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   helper_func.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sdarius- <sdarius-@student.42heilbronn.    +#+  +:+       +#+        */
+/*   By: sdarius- <sdarius-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/02 16:26:32 by sdarius-          #+#    #+#             */
-/*   Updated: 2025/10/26 18:06:46 by sdarius-         ###   ########.fr       */
+/*   Updated: 2025/11/14 17:09:47 by sdarius-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ void	cleanup_data(t_data *data)
 void	print_action(t_philo *philo, char *action)
 {
 	pthread_mutex_lock(&philo->data->print_mutex);
-	if (!philo->data->stop_simulation)
+	if (!check_simultation(philo->data))
 		printf("%ld %d %s\n", get_time() - philo->data->start_time, philo->id,
 			action);
 	pthread_mutex_unlock(&philo->data->print_mutex);

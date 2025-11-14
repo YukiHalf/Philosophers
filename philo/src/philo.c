@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sdarius- <sdarius-@student.42heilbronn.    +#+  +:+       +#+        */
+/*   By: sdarius- <sdarius-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/24 15:10:01 by sdarius-          #+#    #+#             */
-/*   Updated: 2025/10/26 16:41:06 by sdarius-         ###   ########.fr       */
+/*   Updated: 2025/11/14 17:13:34 by sdarius-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ void	init_data(int argc, char **argv, t_data *data)
 	data->stop_simulation = 0;
 	pthread_mutex_init(&data->print_mutex, NULL);
 	pthread_mutex_init(&data->death_mutex, NULL);
+	pthread_mutex_init(&data->stop_mutex, NULL);
 	data->forks = NULL;
 	data->philo = NULL;
 	data->threads = NULL;
@@ -107,15 +108,15 @@ int	main(int argc, char **argv)
 	int			i;
 
 	if (argc != 5 && argc != 6)
-		return (1);
+		return (message_error(), 1);
 	if (!valid_args(argc, argv))
 		return (message_error(), 1);
 	init_data(argc, argv, &data);
 	if (!init_philo(&data))
 		return (cleanup_data(&data), 1);
-	pthread_create(&monitor_thread, NULL, monitor, &data);
+	pthread_create(&monitor_thread, NULL, &monitor, &data);
 	pthread_join(monitor_thread, NULL);
-	data.stop_simulation = 1;
+	set_stop(&data);
 	i = 0;
 	while (i < data.number_of_philo)
 	{

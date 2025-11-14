@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   monitor.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sdarius- <sdarius-@student.42heilbronn.    +#+  +:+       +#+        */
+/*   By: sdarius- <sdarius-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/30 15:34:36 by sdarius-          #+#    #+#             */
-/*   Updated: 2025/10/26 16:42:46 by sdarius-         ###   ########.fr       */
+/*   Updated: 2025/11/14 17:11:16 by sdarius-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	check_rounds(t_data *data, int finished_count)
 	pthread_mutex_lock(&data->death_mutex);
 	if (data->number_of_rounds != -1 && finished_count >= data->number_of_philo)
 	{
-		data->stop_simulation = 1;
+		set_stop(data);
 	}
 	pthread_mutex_unlock(&data->death_mutex);
 }
@@ -27,7 +27,7 @@ int	check_died(t_data *data, int i, long time_since_meal)
 	if (time_since_meal > data->time_to_die)
 	{
 		print_action(&data->philo[i], "died");
-		data->stop_simulation = 1;
+		set_stop(data);
 		pthread_mutex_unlock(&data->death_mutex);
 		return (1);
 	}
