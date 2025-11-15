@@ -6,7 +6,7 @@
 /*   By: sdarius- <sdarius-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/24 15:10:01 by sdarius-          #+#    #+#             */
-/*   Updated: 2025/11/14 17:13:34 by sdarius-         ###   ########.fr       */
+/*   Updated: 2025/11/15 14:00:14 by sdarius-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@ void	init_data(int argc, char **argv, t_data *data)
 		data->number_of_rounds = ft_atol(argv[5]);
 	else
 		data->number_of_rounds = -1;
-	data->stop_simulation = 0;
 	pthread_mutex_init(&data->print_mutex, NULL);
 	pthread_mutex_init(&data->death_mutex, NULL);
 	pthread_mutex_init(&data->stop_mutex, NULL);
@@ -62,6 +61,7 @@ int	init_philo(t_data *data)
 	i = 0;
 	while (i < data->number_of_philo)
 	{
+		data->philo[i].stop_simulation = 0;
 		data->philo[i].data = data;
 		data->philo[i].id = i + 1;
 		data->philo[i].left_fork = &data->forks[i];

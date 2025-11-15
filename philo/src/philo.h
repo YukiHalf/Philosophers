@@ -6,7 +6,7 @@
 /*   By: sdarius- <sdarius-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/24 15:10:21 by sdarius-          #+#    #+#             */
-/*   Updated: 2025/11/14 17:13:20 by sdarius-         ###   ########.fr       */
+/*   Updated: 2025/11/15 13:59:34 by sdarius-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,6 @@ typedef struct s_data
 	long				time_to_sleep;
 	long				start_time;
 	int					number_of_rounds;
-	int					stop_simulation;
 	pthread_mutex_t		print_mutex;
 	pthread_mutex_t		death_mutex;
 	pthread_mutex_t		stop_mutex;
@@ -42,6 +41,7 @@ typedef struct s_philo
 {
 	int					id;
 	int					meals_eaten;
+	int					stop_simulation;
 	long				last_meal_time;
 	pthread_mutex_t		*left_fork;
 	pthread_mutex_t		*right_fork;

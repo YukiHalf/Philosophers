@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   special_case.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sdarius- <sdarius-@student.42heilbronn.    +#+  +:+       +#+        */
+/*   By: sdarius- <sdarius-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/05 22:44:59 by sdarius-          #+#    #+#             */
-/*   Updated: 2025/11/07 17:29:32 by sdarius-         ###   ########.fr       */
+/*   Updated: 2025/11/14 21:39:05 by sdarius-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,5 +61,5 @@ long	ft_atol(char *str)
 
 void	message_error(void)
 {
-	printf("The args you provided don't fit the standart\n");
+	printf("The args you provided don't fit the standard.\n");
 }
